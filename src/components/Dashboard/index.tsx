@@ -1,4 +1,4 @@
-import { useTransactions } from "../../TransactionsContext";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Summary } from "../Summary";
 import { Table } from "../Table";
 

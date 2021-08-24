@@ -1,5 +1,11 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { api } from './services/api';
+import { moneyMaskToFloat } from '../helpers/masks';
+import { api } from '../services/api';
+
+export const MAP_TYPES = {
+  INCOME: 0,
+  OUTCOME: 1
+};
 
 interface TransactionsProps {
   children: ReactNode;
@@ -21,14 +27,9 @@ interface TransactionsContextData {
   createTransaction: (transaction: TransactionInput) => Promise<void>;
 }
 
-export const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);
+const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);
 
 export const useTransactions = () => useContext(TransactionsContext);
-
-export const MAP_TYPES = {
-  INCOME: 0,
-  OUTCOME: 1
-};
 
 export function TransactionsProvider({ children }: TransactionsProps) {
   const [data, setData] = useState<TransactionProps[]>([]);
@@ -40,6 +41,7 @@ export function TransactionsProvider({ children }: TransactionsProps) {
   async function createTransaction(transactionInput: TransactionInput) {
     const response = await api.post('/transactions', {
       ...transactionInput,
+      amount: moneyMaskToFloat(transactionInput.amount),
       createdAt: new Date(),
     });
     const { transaction } = response.data;

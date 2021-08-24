@@ -1,4 +1,4 @@
-import { MAP_TYPES, useTransactions } from '../../TransactionsContext';
+import { MAP_TYPES, useTransactions } from '../../hooks/useTransactions';
 import { SummaryCard } from '../SummaryCard';
 
 import incomeImg from '../../assets/income.svg';
@@ -9,7 +9,6 @@ import { Container } from './styles';
 
 export function Summary() {
   const { data } = useTransactions();
-
 
   const summary = data.reduce((acc, transaction) => {
     if (transaction.type === MAP_TYPES.INCOME) {

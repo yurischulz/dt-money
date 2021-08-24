@@ -1,4 +1,4 @@
-import { TransactionProps } from '../../../../TransactionsContext';
+import { TransactionProps } from '../../../../hooks/useTransactions';
 import { MoneyStyle } from '../../../MoneyStyle';
 
 import { Container, TableColumn, TableRow } from './styles';

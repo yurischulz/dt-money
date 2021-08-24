@@ -1,7 +1,7 @@
 import { TableBody } from './partials/TableBody';
 import { TableHead } from './partials/TableHead';
 
-import { TransactionProps } from '../../TransactionsContext';
+import { TransactionProps } from '../../hooks/useTransactions';
 
 import { Container } from './styles';
 export interface Props {
