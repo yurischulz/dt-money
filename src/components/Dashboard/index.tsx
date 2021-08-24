@@ -1,21 +1,11 @@
-import { useEffect, useState } from "react";
-
-import { api } from "../../services/api";
-
+import { useTransactions } from "../../TransactionsContext";
 import { Summary } from "../Summary";
 import { Table } from "../Table";
 
 import { Container, Content } from "./styles";
 
 export function Dashboard() {
-  const [transactions, setTransactions] = useState({
-    data: []
-  });
-
-  useEffect(() => {
-    api.get('transactions')
-      .then(data => setTransactions(data));
-  }, []);
+  const { data } = useTransactions();
 
   const headers = [
     'Título',
@@ -28,7 +18,7 @@ export function Dashboard() {
     <Container>
       <Content>
         <Summary />
-        <Table data={transactions.data} headers={headers} />
+        <Table data={data} headers={headers} />
       </Content>
     </Container>
   )

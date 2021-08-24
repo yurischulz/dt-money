@@ -321,22 +321,18 @@ export const GlobalStyle = createGlobalStyle`
     background-color: var(--color-background);
     padding: 3rem;
     position: relative;
+  }
 
-    h2 {
-      color: var(--color-title);
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-    }
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background-color: transparent;
+    transition: filter 0.2s;
 
-    input {
-      width: 100%;
-      background-color: var(--color-background-input);
-      border: 1px solid var(--color-border);
-      border-radius: 0.25rem;
-      padding: 0 1.5rem;
-      height: 4rem;
-      font-weight: 400;
-      font-size: 1rem;
+    &:hover {
+      filter: brightness(0.8);
     }
   }
 `;

@@ -1,16 +1,17 @@
-import { moneyMask } from '../../helpers/masks';
-
 import { MoneyContainer } from './styles';
 
 interface Props {
-  value: string;
+  value: number;
 }
 
 export const MoneyStyle = ({ value, ...props }: Props) => {
   return (
     <MoneyContainer {...props}>
       <span>R$</span>
-      {moneyMask(value.toString())}
+      {new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(value).replace('R$', '')}
     </MoneyContainer>
   );
 }

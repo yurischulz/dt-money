@@ -2,7 +2,9 @@ const reverseString = (value: string) => value.split('').reverse().join('');
 
 export const moneyMask = (value: string) => {
   const valor = reverseString(value.replace(/[^\d]+/gi, ''));
+  console.log({ valor });
   const mascara = reverseString('###.###.###.###,##');
+  console.log({ mascara });
   let resultado = '';
 
   for (let x = 0, y = 0; x < mascara.length && y < valor.length;) {

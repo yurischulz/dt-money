@@ -3,7 +3,7 @@ import { Container } from './styles';
 
 interface Props {
   icon: string;
-  value: string;
+  value: number;
   title: string;
   className?: string;
 }

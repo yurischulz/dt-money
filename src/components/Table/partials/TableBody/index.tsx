@@ -1,9 +1,9 @@
-import { TableColumn } from '../TableColumn';
-import { TableRow } from '../TableRow';
-import { Container } from './styles';
+import { TransactionProps } from '../../../../TransactionsContext';
+import { MoneyStyle } from '../../../MoneyStyle';
 
+import { Container, TableColumn, TableRow } from './styles';
 interface Props {
-  data: Array<any>
+  data: Array<TransactionProps | any>;
   className?: string;
 }
 
@@ -12,7 +12,16 @@ export function TableBody({ data, ...props }: Props) {
     <Container {...props} >
       {data && data.map((column, index) => (
         <TableColumn key={index} className={column.type === 0 ? 'input' : 'output'} >
-          <TableRow key={index} data={column} />
+          <TableRow>{column.title}</TableRow>
+          <TableRow className="amount">
+            <MoneyStyle value={column.amount} />
+          </TableRow>
+          <TableRow>{column.category}</TableRow>
+          <TableRow>
+            {new Intl.DateTimeFormat('pt-BR').format(
+              new Date(column.createdAt)
+            )}
+          </TableRow>
         </TableColumn>
       ))}
     </Container>
